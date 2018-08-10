@@ -1,0 +1,10 @@
+*.pyc
+__pycache__
+
+.idea
+res
+
+geckodriver.log
+service.log
+
+*.db
