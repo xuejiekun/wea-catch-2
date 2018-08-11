@@ -112,5 +112,19 @@ def create_gif_with_cv2(file, source_dir, fps, mode=None, size=None, size_select
     out.release()
 
 
+def convert_movie(source, target, mul=1):
+    reader = imageio.get_reader(source)
+    fps = reader.get_meta_data()['fps']
+
+    writer = imageio.get_writer(target, fps=fps)
+    ct = 0
+
+    for im in reader:
+        if ct % mul == 0:
+            writer.append_data(im)
+        ct += 1
+    writer.close()
+
+
 if __name__ == '__main__':
     pass

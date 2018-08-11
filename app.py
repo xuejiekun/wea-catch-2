@@ -27,19 +27,21 @@ def create_gif_from_pic(data_dir, loc, format):
     print(loc_dict[loc])
 
     # date = datetime.now()
-    date = datetime(2018, 8, 7)
+    date = datetime(2018, 8, 11)
 
     scrap = ScrapPic()
     scrap.get_pic_date(data_dir, loc_dict[loc], date, timeout=5, fail_delay=2, fail_num=1)
     source = os.path.join(data_dir, date.strftime('%Y%m%d'), loc)
 
     gif_name = '{}_{}.{}'.format(date.strftime('%Y%m%d'), loc, format)
-    gif_name = os.path.join(format, gif_name)
-    if not os.path.exists(format):
-        os.makedirs(format, exist_ok=True)
+    down_dir = os.path.join('res', format)
+
+    gif_name = os.path.join(down_dir, gif_name)
+    if not os.path.exists(down_dir):
+        os.makedirs(down_dir, exist_ok=True)
 
     create_gif(gif_name, source, 10)
 
 if __name__ == '__main__':
-    create_gif_from_pic('data_dir', 'fs', 'mp4')
+    create_gif_from_pic('res/data_dir', 'gz', 'mp4')
     # test_scrapdata()
